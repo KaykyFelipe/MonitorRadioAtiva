@@ -1,0 +1,63 @@
+# ==========================================
+# GITIGNORE - SISTEMA MONITOR RÁDIO ATIVA
+# ==========================================
+
+# Banco de Dados Local (Contém informações do seu monitor e hostnames)
+db.sqlite3
+db.sqlite3-journal
+
+# Ambientes Virtuais do Python (Locais para cada máquina)
+venv/
+.venv/
+env/
+ENV/
+*.venv
+
+# Arquivos compilados do Python
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+.ipynb_checkpoints
+
+# Logs e arquivos de execução temporários
+*.log
+/tmp/
+/temp/
+/out/
+*.raw
+parec_err.log
+
+# Configurações de Variáveis de Ambiente e Arquivos de Segredo
+.env
+.env.*
+secrets.json
+sops.yaml
+
+# Pastas de IDEs e Editores
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Arquivos de Sistema Operacional (Windows/macOS)
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Coberturas de testes e relatórios
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/

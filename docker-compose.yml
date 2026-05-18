@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: monitor_radio_ativa
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mantém o banco de dados persistente no seu host (mesmo se o container for atualizado/reiniciado)
+      - ./db.sqlite3:/app/db.sqlite3
+    environment:
+      - PYTHONUNBUFFERED=1

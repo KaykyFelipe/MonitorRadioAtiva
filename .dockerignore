@@ -1,0 +1,21 @@
+# Ignora ambientes virtuais locais
+venv/
+.venv/
+env/
+
+# Ignora caches do Python
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignora pastas de controle de versão
+.git/
+.gitignore
+
+# Ignora arquivos temporários e logs do Docker/SO
+db.sqlite3-journal
+.dockerignore
+Dockerfile
+docker-compose.yml
+radio_client_agent.sh
