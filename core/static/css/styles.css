@@ -89,6 +89,18 @@ body {
     gap: 20px;
 }
 
+.header-logo {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 12px rgba(255, 255, 255, 0.25));
+    transition: transform 0.3s ease;
+}
+
+.header-logo:hover {
+    transform: scale(1.05);
+}
+
 .logo-circle {
     width: 60px;
     height: 60px;
@@ -407,6 +419,7 @@ body {
     letter-spacing: 0.5px;
     text-transform: uppercase;
     text-align: right;
+    white-space: nowrap;
 }
 
 .text-online {
