@@ -218,10 +218,9 @@ def check_statuses_api(request):
                 "details": "Máquina Ligada, aguardando primeiro sinal do monitor de áudio"
             }
 
-    # Ping the stations concurrently, but limit to 5 threads.
-    # Spawning 14 raw socket ping subprocesses at the exact same millisecond
-    # causes the Windows IP stack to occasionally drop packets (false offline).
-    with ThreadPoolExecutor(max_workers=5) as executor:
+    # Ping the stations concurrently. Since we are running in Linux (Docker),
+    # we can run all 14 pings fully in parallel without OS-level limitations.
+    with ThreadPoolExecutor(max_workers=len(RADIO_STATIONS)) as executor:
         results = list(executor.map(check_single_station, RADIO_STATIONS))
         
     execution_duration = time.time() - start_time

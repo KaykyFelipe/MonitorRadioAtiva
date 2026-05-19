@@ -2,7 +2,7 @@ import platform
 import subprocess
 import time
 
-def ping_host(host, timeout_ms=2000, retries=2):
+def ping_host(host, timeout_ms=2000, retries=1):
     """
     Pings a host and returns True if reachable (online), False otherwise (offline).
     Automatically adjusts arguments based on whether it runs on Windows or Linux.
