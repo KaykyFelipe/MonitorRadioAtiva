@@ -157,12 +157,7 @@ function updateDashboard(data) {
     if (offlineEl) offlineEl.innerText = offlineCount;
 
     // Update bottom metadata badges
-    const lastUpdateEl = document.getElementById("last-update-badge");
     const speedEl = document.getElementById("speed-badge");
-    
-    if (lastUpdateEl) {
-        lastUpdateEl.innerHTML = `<i class="fa-solid fa-circle-check" style="color: var(--color-online)"></i> Sincronizado às ${data.timestamp}`;
-    }
     
     if (speedEl) {
         speedEl.className = "speed-badge";
@@ -174,8 +169,9 @@ function updateDashboard(data) {
  * Clean recovery UI state if the backend ping fails.
  */
 function handleFetchError() {
-    const lastUpdateEl = document.getElementById("last-update-badge");
-    if (lastUpdateEl) {
-        lastUpdateEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color: var(--color-offline)"></i> Erro de Conexão`;
+    const speedEl = document.getElementById("speed-badge");
+    if (speedEl) {
+        speedEl.className = "speed-badge";
+        speedEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color: var(--color-offline)"></i> Erro de Conexão`;
     }
 }
