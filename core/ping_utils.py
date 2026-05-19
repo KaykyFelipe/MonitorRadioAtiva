@@ -17,7 +17,9 @@ def ping_host(host, timeout_ms=2000, retries=2):
     timeout_param = '-w' if is_windows else '-W'
     timeout_value = str(timeout_ms) if is_windows else str(max(1, timeout_ms // 1000))
     
-    command = ['ping', count_param, '1', timeout_param, timeout_value, host]
+    # Envia 2 pacotes para evitar que avisos de roteamento (como ICMP Redirect Host)
+    # matem o processo antes de receber a resposta da rádio.
+    command = ['ping', count_param, '2', timeout_param, timeout_value, host]
     
     for attempt in range(retries):
         try:
@@ -33,6 +35,10 @@ def ping_host(host, timeout_ms=2000, retries=2):
             if result.returncode == 0:
                 return True
                 
+        except OSError as e:
+            # Captura se o comando 'ping' não existir no container (ex: FileNotFoundError)
+            print(f"[ERRO DE REDE] O comando 'ping' não está instalado ou falhou: {str(e)}")
+            return False
         except (subprocess.SubprocessError, subprocess.TimeoutExpired):
             pass
             
