@@ -26,8 +26,8 @@
     
     --color-sem-radio: hsl(54, 100%, 65%);
     --color-sem-radio-glow: hsla(54, 100%, 65%, 0.35);
-    --color-sem-audio: hsl(24, 100%, 50%);
-    --color-sem-audio-glow: hsla(24, 100%, 50%, 0.35);
+    --color-sem-audio: hsl(24, 100%, 65%);
+    --color-sem-audio-glow: hsla(24, 100%, 65%, 0.35);
     
     /* Border & Glassmorphism Properties */
     --border-color: hsla(215, 20%, 25%, 0.3);
