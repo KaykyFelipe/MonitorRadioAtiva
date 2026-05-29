@@ -109,6 +109,8 @@ function updateDashboard(data) {
         if (rowEl) {
             rowEl.classList.remove("station-offline");
             rowEl.classList.remove("station-warning");
+            rowEl.classList.remove("station-sem-radio");
+            rowEl.classList.remove("station-sem-audio");
             
             // Inject the detailed log as a tooltip
             rowEl.title = station.details;
@@ -121,20 +123,27 @@ function updateDashboard(data) {
             dotEl.classList.add("dot-online");
             onlineCount++;
         } else if (station.status === "warning") {
-            // Dynamic text based on which process has failed
+            // Dynamic text and color based on which process has failed
             let label = "ATENÇÃO";
+            let warningClass = "checking"; // default fallback (yellow/gold)
+            
             if (station.firefox !== 'running' && station.audio !== 'playing') {
                 label = "SEM RÁDIO";
+                warningClass = "sem-radio"; // lighter yellow
             } else if (station.firefox !== 'running') {
                 label = "SEM NAVEGADOR";
+                warningClass = "checking";
             } else if (station.audio !== 'playing') {
                 label = "SEM ÁUDIO";
+                warningClass = "sem-audio"; // orange
             }
             
             textEl.innerText = label;
-            textEl.classList.add("text-checking");
-            dotEl.classList.add("dot-checking");
-            if (rowEl) rowEl.classList.add("station-warning");
+            textEl.classList.add(`text-${warningClass}`);
+            dotEl.classList.add(`dot-${warningClass}`);
+            if (rowEl) {
+                rowEl.classList.add(warningClass === "checking" ? "station-warning" : `station-${warningClass}`);
+            }
             warningCount++;
         } else {
             textEl.innerText = "DESLIGADA";

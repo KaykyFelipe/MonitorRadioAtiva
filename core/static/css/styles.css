@@ -24,6 +24,11 @@
     --color-checking: hsl(38, 95%, 55%);
     --color-checking-glow: hsla(38, 95%, 55%, 0.35);
     
+    --color-sem-radio: hsl(54, 100%, 65%);
+    --color-sem-radio-glow: hsla(54, 100%, 65%, 0.35);
+    --color-sem-audio: hsl(24, 100%, 50%);
+    --color-sem-audio-glow: hsla(24, 100%, 50%, 0.35);
+    
     /* Border & Glassmorphism Properties */
     --border-color: hsla(215, 20%, 25%, 0.3);
     --border-highlight: hsla(210, 40%, 98%, 0.05);
@@ -434,6 +439,14 @@ body {
     color: var(--color-checking);
 }
 
+.text-sem-radio {
+    color: var(--color-sem-radio);
+}
+
+.text-sem-audio {
+    color: var(--color-sem-audio);
+}
+
 .indicator-wrapper {
     position: relative;
     width: 14px;
@@ -467,6 +480,18 @@ body {
     100% { transform: scale(0.9); box-shadow: 0 0 0 0 transparent; }
 }
 
+@keyframes pulse-sem-radio {
+    0% { transform: scale(0.9); box-shadow: 0 0 0 0 var(--color-sem-radio-glow); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px transparent; }
+    100% { transform: scale(0.9); box-shadow: 0 0 0 0 transparent; }
+}
+
+@keyframes pulse-sem-audio {
+    0% { transform: scale(0.9); box-shadow: 0 0 0 0 var(--color-sem-audio-glow); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px transparent; }
+    100% { transform: scale(0.9); box-shadow: 0 0 0 0 transparent; }
+}
+
 /* Dots Styling & Animations */
 .dot-online {
     background-color: var(--color-online);
@@ -484,6 +509,18 @@ body {
     background-color: var(--color-checking);
     box-shadow: 0 0 10px var(--color-checking);
     animation: pulse-checking 2.5s infinite;
+}
+
+.dot-sem-radio {
+    background-color: var(--color-sem-radio);
+    box-shadow: 0 0 10px var(--color-sem-radio);
+    animation: pulse-sem-radio 2.5s infinite;
+}
+
+.dot-sem-audio {
+    background-color: var(--color-sem-audio);
+    box-shadow: 0 0 10px var(--color-sem-audio);
+    animation: pulse-sem-audio 2.5s infinite;
 }
 
 /* ==========================================================================
@@ -557,5 +594,203 @@ body {
     .header-actions {
         width: 100%;
         justify-content: space-between;
+    }
+}
+
+/* Viewport-filling dashboard for desktops/monitors */
+@media (min-width: 1025px) {
+    body {
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .app-container {
+        height: 100vh;
+        max-width: 100%;
+        padding: 20px 24px;
+        gap: 16px;
+        justify-content: space-between;
+    }
+
+    /* Compact Header */
+    .dashboard-header {
+        padding-bottom: 12px;
+    }
+
+    .header-logo {
+        height: 60px;
+    }
+
+    .header-titles h1 {
+        font-size: 2rem;
+    }
+
+    .header-titles .subtitle {
+        font-size: 0.85rem;
+    }
+
+    /* Compact Stats Cards */
+    .stats-overview {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+
+    .stat-card {
+        padding: 16px 20px;
+        gap: 16px;
+    }
+
+    .stat-value {
+        font-size: 1.6rem;
+    }
+
+    /* Grid layout converted to rows */
+    .dashboard-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        flex: 1;
+        min-height: 0;
+        justify-content: space-between;
+    }
+
+    .group-card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px 24px;
+        height: calc(14.28% - 9px); /* 7 groups -> 100% / 7 = 14.28% */
+        gap: 24px;
+        min-height: 0;
+        max-width: 1100px; /* limit card width to prevent stretching */
+        width: 100%;
+        margin: 0 auto; /* center cards horizontally */
+    }
+
+    .group-card:hover {
+        transform: translateX(4px); /* Horizontal shift on hover */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .group-header {
+        border-bottom: none;
+        border-right: 1px solid var(--border-color); /* vertical divider */
+        padding: 0 16px 0 0;
+        width: 140px; /* reduced from 220px to remove empty space */
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    .group-badge {
+        display: none; /* hide redundant filial badge to reduce clutter */
+    }
+
+    .group-decor-icon {
+        display: none; /* hide network icon on desktop to remove empty space */
+    }
+
+    .group-header h2 {
+        font-size: 1.15rem;
+        font-weight: 600;
+    }
+
+    /* Stations laid out horizontally */
+    .stations-list {
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+        flex: 1;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 0;
+    }
+
+    .station-row {
+        flex: 1;
+        max-width: calc(50% - 16px); /* consistent columns: 2 stations = 50% width */
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 16px;
+        border-bottom: none;
+        border-right: 1px solid var(--border-color);
+        background: rgba(255, 255, 255, 0.01);
+        border-radius: var(--radius-sm);
+        gap: 16px;
+    }
+
+    .station-row:last-child {
+        border-right: none;
+    }
+
+    .station-row.station-warning {
+        border-left: 3px solid var(--color-checking);
+    }
+
+    .station-row.station-sem-radio {
+        border-left: 3px solid var(--color-sem-radio);
+    }
+
+    .station-row.station-sem-audio {
+        border-left: 3px solid var(--color-sem-audio);
+    }
+
+    .station-row.station-offline {
+        border-left: 3px solid var(--color-offline);
+    }
+
+    .station-details {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        flex: 1;
+    }
+
+    .station-title {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        gap: 8px;
+        width: 135px; /* reduced from 180px to prevent status text from clipping */
+        flex-shrink: 0; /* prevent label from shrinking */
+    }
+
+    .station-label {
+        font-size: 1.05rem; /* Large and readable! */
+        font-weight: 600;
+    }
+
+    .station-hostname {
+        display: none; /* make sure hostname doesn't display or take space on desktop */
+    }
+
+    .station-meta {
+        display: flex;
+        align-items: center;
+    }
+
+    .ip-badge {
+        font-size: 0.8rem;
+        padding: 3px 8px;
+    }
+
+    .station-status-area {
+        gap: 10px;
+        flex-shrink: 0; /* prevent status area from shrinking */
+    }
+
+    .status-text {
+        font-size: 0.8rem; /* Large and readable! */
+        white-space: nowrap; /* prevent text wrapping/clipping */
+    }
+
+    .dashboard-footer {
+        padding-top: 10px;
     }
 }
