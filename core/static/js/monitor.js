@@ -107,6 +107,7 @@ function updateDashboard(data) {
         textEl.className = "status-text";
         dotEl.className = "status-dot";
         if (rowEl) {
+            rowEl.classList.remove("station-online");
             rowEl.classList.remove("station-offline");
             rowEl.classList.remove("station-warning");
             rowEl.classList.remove("station-sem-radio");
@@ -121,6 +122,7 @@ function updateDashboard(data) {
             textEl.innerText = "TOCANDO";
             textEl.classList.add("text-online");
             dotEl.classList.add("dot-online");
+            if (rowEl) rowEl.classList.add("station-online");
             onlineCount++;
         } else if (station.status === "warning") {
             // Dynamic text and color based on which process has failed

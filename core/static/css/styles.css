@@ -359,8 +359,20 @@ body {
     background: rgba(255, 255, 255, 0.02);
 }
 
+.station-row.station-online {
+    border-left: 4px solid var(--color-online);
+}
+
 .station-row.station-warning {
     border-left: 4px solid var(--color-checking);
+}
+
+.station-row.station-sem-radio {
+    border-left: 4px solid var(--color-sem-radio);
+}
+
+.station-row.station-sem-audio {
+    border-left: 4px solid var(--color-sem-audio);
 }
 
 .station-row.station-offline {
@@ -726,6 +738,10 @@ body {
 
     .station-row:last-child {
         border-right: none;
+    }
+
+    .station-row.station-online {
+        border-left: 3px solid var(--color-online);
     }
 
     .station-row.station-warning {
