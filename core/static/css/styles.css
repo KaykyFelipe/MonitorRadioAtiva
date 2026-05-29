@@ -688,7 +688,7 @@ body {
         border-bottom: none;
         border-right: 1px solid var(--border-color); /* vertical divider */
         padding: 0 16px 0 0;
-        width: 140px; /* reduced from 220px to remove empty space */
+        width: 155px; /* increased from 140px to prevent text wrapping */
         flex-shrink: 0;
         display: flex;
         flex-direction: column;
@@ -706,8 +706,9 @@ body {
     }
 
     .group-header h2 {
-        font-size: 1.15rem;
+        font-size: 0.95rem; /* reduced from 1.15rem to prevent text wrapping */
         font-weight: 600;
+        white-space: nowrap; /* never wrap city names */
     }
 
     /* Stations laid out horizontally */

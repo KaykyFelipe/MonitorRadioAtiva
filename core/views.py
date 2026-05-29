@@ -10,25 +10,25 @@ import time
 
 # Pre-defined list of the 14 radio Linux machines with VPN IPs and groups.
 RADIO_STATIONS = [
-    {"id": "cb_lavador", "name": "atv.radiocb.lavador", "ip": "10.100.230.230", "group": "CB", "label": "Lavador"},
-    {"id": "cb_almoxarifado", "name": "atv.radiocb.almoxarifado", "ip": "10.100.230.231", "group": "CB", "label": "Almoxarifado"},
+    {"id": "cb_lavador", "name": "atv.radiocb.lavador", "ip": "10.100.230.230", "group": "Cuiabá", "label": "Lavador"},
+    {"id": "cb_almoxarifado", "name": "atv.radiocb.almoxarifado", "ip": "10.100.230.231", "group": "Cuiabá", "label": "Almoxarifado"},
     
-    {"id": "ub_lavador", "name": "atv.radioub.lavador", "ip": "10.100.230.232", "group": "UB", "label": "Lavador"},
-    {"id": "ub_almoxarifado", "name": "atv.radioub.almoxarifado", "ip": "10.100.230.233", "group": "UB", "label": "Almoxarifado"},
+    {"id": "ub_lavador", "name": "atv.radioub.lavador", "ip": "10.100.230.232", "group": "Uberlândia", "label": "Lavador"},
+    {"id": "ub_almoxarifado", "name": "atv.radioub.almoxarifado", "ip": "10.100.230.233", "group": "Uberlândia", "label": "Almoxarifado"},
     
-    {"id": "lm_lavador", "name": "atv.radiolm.lavador", "ip": "10.100.230.234", "group": "LM", "label": "Lavador"},
-    {"id": "lm_almoxarifado", "name": "atv.radiolm.almoxarifado", "ip": "10.100.230.235", "group": "LM", "label": "Almoxarifado"},
+    {"id": "lm_lavador", "name": "atv.radiolm.lavador", "ip": "10.100.230.234", "group": "Limeira", "label": "Lavador"},
+    {"id": "lm_almoxarifado", "name": "atv.radiolm.almoxarifado", "ip": "10.100.230.235", "group": "Limeira", "label": "Almoxarifado"},
     
-    {"id": "cg_lavador_almoxarifado", "name": "atv.radiocg.lavador", "ip": "10.100.230.236", "group": "CG", "label": "Lavador/Almoxarifado"},
+    {"id": "cg_lavador_almoxarifado", "name": "atv.radiocg.lavador", "ip": "10.100.230.236", "group": "Campo Grande", "label": "Lavador/Almoxarifado"},
     
-    {"id": "ar_lavador", "name": "atv.radioar.lavador", "ip": "10.100.230.238", "group": "AR", "label": "Lavador"},
-    {"id": "ar_almoxarifado", "name": "atv.radioar.almoxarifado", "ip": "10.100.230.239", "group": "AR", "label": "Almoxarifado"},
+    {"id": "ar_lavador", "name": "atv.radioar.lavador", "ip": "10.100.230.238", "group": "Araçatuba", "label": "Lavador"},
+    {"id": "ar_almoxarifado", "name": "atv.radioar.almoxarifado", "ip": "10.100.230.239", "group": "Araçatuba", "label": "Almoxarifado"},
     
-    {"id": "ld_lavador", "name": "atv.radiold.lavador", "ip": "10.100.230.240", "group": "LD", "label": "Lavador"},
-    {"id": "ld_almoxarifado", "name": "atv.radiold.almoxarifado", "ip": "10.100.230.241", "group": "LD", "label": "Almoxarifado"},
+    {"id": "ld_lavador", "name": "atv.radiold.lavador", "ip": "10.100.230.240", "group": "Londrina", "label": "Lavador"},
+    {"id": "ld_almoxarifado", "name": "atv.radiold.almoxarifado", "ip": "10.100.230.241", "group": "Londrina", "label": "Almoxarifado"},
     
-    {"id": "rp_lavador", "name": "atv.radiorp.lavador", "ip": "10.100.230.242", "group": "RP", "label": "Lavador"},
-    {"id": "rp_almoxarifado", "name": "atv.radiorp.almoxarifado", "ip": "10.100.230.243", "group": "RP", "label": "Almoxarifado"},
+    {"id": "rp_lavador", "name": "atv.radiorp.lavador", "ip": "10.100.230.242", "group": "Ribeirão Preto", "label": "Lavador"},
+    {"id": "rp_almoxarifado", "name": "atv.radiorp.almoxarifado", "ip": "10.100.230.243", "group": "Ribeirão Preto", "label": "Almoxarifado"},
 ]
 
 def dashboard(request):
