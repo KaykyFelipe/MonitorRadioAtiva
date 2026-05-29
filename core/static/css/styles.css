@@ -729,12 +729,12 @@ body {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 8px 16px;
+        padding: 8px 12px; /* reduced from 16px to prevent clipping */
         border-bottom: none;
         border-right: 1px solid var(--border-color);
         background: rgba(255, 255, 255, 0.01);
         border-radius: var(--radius-sm);
-        gap: 16px;
+        gap: 8px; /* reduced from 16px */
     }
 
     .station-row:last-child {
@@ -765,7 +765,7 @@ body {
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 16px;
+        gap: 8px; /* reduced from 16px to prevent status clipping */
         flex: 1;
     }
 
@@ -774,7 +774,7 @@ body {
         flex-direction: row;
         align-items: baseline;
         gap: 8px;
-        width: 135px; /* reduced from 180px to prevent status text from clipping */
+        width: 110px; /* reduced from 135px to prevent status text from clipping on narrow screens */
         flex-shrink: 0; /* prevent label from shrinking */
     }
 
@@ -798,12 +798,12 @@ body {
     }
 
     .station-status-area {
-        gap: 10px;
+        gap: 6px; /* reduced from 10px to prevent clipping */
         flex-shrink: 0; /* prevent status area from shrinking */
     }
 
     .status-text {
-        font-size: 0.8rem; /* Large and readable! */
+        font-size: 0.78rem; /* reduced from 0.8rem to prevent text/dot clipping on narrow screens */
         white-space: nowrap; /* prevent text wrapping/clipping */
     }
 
