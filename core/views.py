@@ -10,7 +10,7 @@ import time
 
 # Pre-defined list of the 14 radio Linux machines with VPN IPs and groups.
 RADIO_STATIONS = [
-    {"id": "cb_lavador", "name": "atv.radiocb.lavador", "ip": "10.100.230.230", "group": "Cuiabá", "label": "Lavador"},
+    {"id": "cb_lavador", "name": "atv.radiocb.lavador", "ip": "10.100.250.5", "group": "Cuiabá", "label": "Lavador"},
     {"id": "cb_almoxarifado", "name": "atv.radiocb.almoxarifado", "ip": "10.100.230.231", "group": "Cuiabá", "label": "Almoxarifado"},
     
     {"id": "ub_lavador", "name": "atv.radioub.lavador", "ip": "10.100.230.232", "group": "Uberlândia", "label": "Lavador"},
