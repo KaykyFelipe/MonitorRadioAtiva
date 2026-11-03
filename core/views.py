@@ -24,7 +24,7 @@ RADIO_STATIONS = [
     {"id": "ar_lavador", "name": "atv.radioar.lavador", "ip": "10.100.230.238", "group": "Araçatuba", "label": "Lavador"},
     {"id": "ar_almoxarifado", "name": "atv.radioar.almoxarifado", "ip": "10.100.230.239", "group": "Araçatuba", "label": "Almoxarifado"},
     
-    {"id": "ld_lavador", "name": "atv.radiold.lavador", "ip": "10.100.230.240", "group": "Londrina", "label": "Lavador"},
+    {"id": "ld_lavador", "name": "atv.radiold.lavador", "ip": "10.100.250.16", "group": "Londrina", "label": "Lavador"},
     {"id": "ld_almoxarifado", "name": "atv.radiold.almoxarifado", "ip": "10.100.230.241", "group": "Londrina", "label": "Almoxarifado"},
     
     {"id": "rp_lavador", "name": "atv.radiorp.lavador", "ip": "10.100.230.242", "group": "Ribeirão Preto", "label": "Lavador"},
