@@ -28,7 +28,9 @@
     --color-sem-radio-glow: hsla(54, 100%, 65%, 0.35);
     --color-sem-audio: hsl(24, 100%, 65%);
     --color-sem-audio-glow: hsla(24, 100%, 65%, 0.35);
-    
+    --color-maintenance: hsl(195, 90%, 68%);
+    --color-maintenance-glow: hsla(195, 90%, 68%, 0.35);
+
     /* Border & Glassmorphism Properties */
     --border-color: hsla(215, 20%, 25%, 0.3);
     --border-highlight: hsla(210, 40%, 98%, 0.05);
@@ -199,6 +201,20 @@ body {
     transform: translateY(0);
 }
 
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.btn-secondary {
+    background: hsla(215, 20%, 25%, 0.6);
+    color: var(--color-text-primary);
+}
+
+.btn-secondary:hover {
+    background: hsla(215, 20%, 32%, 0.8);
+}
+
 /* ==========================================================================
    STATS OVERVIEW
    ========================================================================== */
@@ -255,6 +271,11 @@ body {
 .stat-card.warning .stat-icon-wrapper {
     background: rgba(245, 158, 11, 0.1);
     color: var(--color-checking);
+}
+
+.stat-card.maintenance .stat-icon-wrapper {
+    background: hsla(195, 90%, 68%, 0.1);
+    color: var(--color-maintenance);
 }
 
 .stat-info {
@@ -379,6 +400,10 @@ body {
     border-left: 4px solid var(--color-offline);
 }
 
+.station-row.station-maintenance {
+    border-left: 4px solid var(--color-maintenance);
+}
+
 .station-details {
     display: flex;
     flex-direction: column;
@@ -459,6 +484,10 @@ body {
     color: var(--color-sem-audio);
 }
 
+.text-maintenance {
+    color: var(--color-maintenance);
+}
+
 .indicator-wrapper {
     position: relative;
     width: 14px;
@@ -504,6 +533,12 @@ body {
     100% { transform: scale(0.9); box-shadow: 0 0 0 0 transparent; }
 }
 
+@keyframes pulse-maintenance {
+    0% { transform: scale(0.9); box-shadow: 0 0 0 0 var(--color-maintenance-glow); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px transparent; }
+    100% { transform: scale(0.9); box-shadow: 0 0 0 0 transparent; }
+}
+
 /* Dots Styling & Animations */
 .dot-online {
     background-color: var(--color-online);
@@ -533,6 +568,135 @@ body {
     background-color: var(--color-sem-audio);
     box-shadow: 0 0 10px var(--color-sem-audio);
     animation: pulse-sem-audio 2.5s infinite;
+}
+
+.dot-maintenance {
+    background-color: var(--color-maintenance);
+    box-shadow: 0 0 10px var(--color-maintenance);
+    animation: pulse-maintenance 2.5s infinite;
+}
+
+/* ==========================================================================
+   MAINTENANCE
+   ========================================================================== */
+
+.maintenance-btn {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    background: hsla(215, 20%, 20%, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.maintenance-btn:hover:not(:disabled),
+.maintenance-btn:focus-visible {
+    color: var(--color-maintenance);
+    border-color: var(--color-maintenance);
+    outline: none;
+}
+
+.maintenance-btn:disabled {
+    opacity: 0.4;
+    cursor: wait;
+}
+
+.maintenance-btn.active {
+    color: var(--bg-main);
+    background: var(--color-maintenance);
+    border-color: var(--color-maintenance);
+}
+
+.maintenance-btn.active:hover:not(:disabled),
+.maintenance-btn.active:focus-visible {
+    color: var(--bg-main);
+    filter: brightness(1.15);
+}
+
+.maintenance-dialog {
+    margin: auto;
+    width: min(440px, calc(100vw - 32px));
+    padding: 24px;
+    color: var(--color-text-primary);
+    background: hsl(222, 20%, 13%);
+    border: 1px solid hsla(215, 20%, 40%, 0.4);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+.maintenance-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.maintenance-dialog h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.maintenance-station {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 16px;
+}
+
+.maintenance-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.maintenance-field[hidden] {
+    display: none;
+}
+
+.maintenance-field label,
+.maintenance-field-label {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+}
+
+.maintenance-field p {
+    overflow-wrap: anywhere;
+}
+
+.maintenance-field textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font: inherit;
+    color: var(--color-text-primary);
+    background: hsla(215, 20%, 20%, 0.6);
+    border: 1px solid hsla(215, 20%, 40%, 0.4);
+    border-radius: var(--radius-sm);
+    resize: vertical;
+}
+
+.maintenance-field textarea:focus {
+    outline: none;
+    border-color: var(--color-maintenance);
+}
+
+.maintenance-error {
+    font-size: 0.85rem;
+    color: var(--color-offline);
+    margin-top: 8px;
+}
+
+.maintenance-error:empty {
+    display: none;
+}
+
+.maintenance-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 /* ==========================================================================
@@ -593,6 +757,37 @@ body {
 }
 
 /* Responsive Scaling Adjustments */
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+    }
+
+    .station-row {
+        padding: 14px 12px;
+        gap: 8px;
+    }
+
+    .station-details {
+        min-width: 0;
+    }
+
+    .station-label {
+        overflow-wrap: anywhere;
+    }
+
+    .station-status-area {
+        gap: 8px;
+        flex-shrink: 0;
+    }
+}
+
+/* Notebooks/monitores estreitos: sem espaço para o IP e o botão de manutenção na mesma linha */
+@media (min-width: 1025px) and (max-width: 1279px) {
+    .station-meta {
+        display: none !important;
+    }
+}
+
 @media (max-width: 768px) {
     .app-container {
         padding: 24px 16px;
@@ -643,7 +838,7 @@ body {
 
     /* Compact Stats Cards */
     .stats-overview {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         gap: 16px;
     }
 
@@ -674,7 +869,7 @@ body {
         height: calc(14.28% - 9px); /* 7 groups -> 100% / 7 = 14.28% */
         gap: 24px;
         min-height: 0;
-        max-width: 1100px; /* limit card width to prevent stretching */
+        max-width: 1240px; /* limit card width to prevent stretching */
         width: 100%;
         margin: 0 auto; /* center cards horizontally */
     }
@@ -759,6 +954,10 @@ body {
 
     .station-row.station-offline {
         border-left: 3px solid var(--color-offline);
+    }
+
+    .station-row.station-maintenance {
+        border-left: 3px solid var(--color-maintenance);
     }
 
     .station-details {

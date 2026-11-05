@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
 from django.utils import timezone
 from concurrent.futures import ThreadPoolExecutor
 from .ping_utils import ping_host
-from .models import MachineHeartbeat
+from .models import MachineHeartbeat, StationMaintenance
 import json
 import time
 
@@ -125,14 +126,64 @@ def receive_heartbeat(request):
         print(" -> DICA: Certifique-se de que rodou os comandos: python manage.py makemigrations core && python manage.py migrate\n")
         return JsonResponse({"error": str(e)}, status=500)
 
+@require_http_methods(["POST", "DELETE"])
+def maintenance_api(request, station_id):
+    """
+    POST { "reason": "..." } coloca a rádio em manutenção. DELETE encerra a manutenção.
+    """
+    if not any(station['id'] == station_id for station in RADIO_STATIONS):
+        return JsonResponse({"error": "Rádio não encontrada."}, status=404)
+
+    if request.method == 'DELETE':
+        StationMaintenance.objects.filter(station_id=station_id).delete()
+        return JsonResponse({"status": "success"})
+
+    try:
+        data = json.loads(request.body)
+        reason = data['reason'].strip()
+    except (json.JSONDecodeError, KeyError, TypeError, AttributeError):
+        return JsonResponse({"error": "Requisição inválida."}, status=400)
+
+    if not reason:
+        return JsonResponse({"error": "Informe o motivo da manutenção."}, status=400)
+    if len(reason) > StationMaintenance.REASON_MAX_LENGTH:
+        return JsonResponse(
+            {"error": f"O motivo pode ter no máximo {StationMaintenance.REASON_MAX_LENGTH} caracteres."},
+            status=400,
+        )
+
+    StationMaintenance.objects.update_or_create(
+        station_id=station_id,
+        defaults={"reason": reason, "started_at": timezone.now()},
+    )
+    return JsonResponse({"status": "success"})
+
 def check_statuses_api(request):
     """
     Asynchronous status endpoint that runs pings in parallel.
     Cross-references each online ping with the database heartbeats to verify audio & browser state.
     """
     start_time = time.time()
-    
+    maintenance_by_station = {m.station_id: m for m in StationMaintenance.objects.all()}
+
     def check_single_station(station):
+        # A manutenção tem prioridade sobre qualquer outro status, então nem precisa de ping
+        maintenance = maintenance_by_station.get(station['id'])
+        if maintenance:
+            started_at = timezone.localtime(maintenance.started_at).strftime('%d/%m às %H:%M')
+            return {
+                "id": station['id'],
+                "name": station['name'],
+                "ip": station['ip'],
+                "group": station['group'],
+                "label": station['label'],
+                "status": "maintenance",
+                "firefox": "unknown",
+                "audio": "unknown",
+                "maintenance_reason": maintenance.reason,
+                "details": f"Motivo: {maintenance.reason}\nEm manutenção desde {started_at}"
+            }
+
         # 1. First verify connection via ping
         is_online = ping_host(station['ip'])
         

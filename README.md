@@ -42,6 +42,11 @@ O painel cruza duas informações sobre cada rádio:
 | **SEM NAVEGADOR** | Saindo áudio, mas o Firefox não foi encontrado | Firefox na máquina |
 | **SEM RÁDIO** | Firefox fechado e sem áudio, **ou** o agente não envia dados há mais de 45 s | Firefox e serviço do agente |
 | **DESLIGADA** | A máquina não responde ao ping | Energia, rede, VPN |
+| **MANUTENÇÃO** | Marcada manualmente no painel. Tem prioridade sobre os outros status, e a máquina não recebe ping | Passe o mouse sobre a rádio para ver o motivo |
+
+### Marcar uma rádio em manutenção
+
+Clique no ícone de chave ao lado da rádio, escreva o motivo e salve. Para encerrar, clique na chave novamente. A marcação fica salva no banco e aparece para todos que abrem o painel.
 
 ### Estrutura do repositório
 

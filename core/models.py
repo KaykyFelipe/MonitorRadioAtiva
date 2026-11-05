@@ -29,3 +29,18 @@ class MachineHeartbeat(models.Model):
         Consider the heartbeat stale if we haven't heard from the client in over 45 seconds.
         """
         return (timezone.now() - self.last_seen).total_seconds() > 45
+
+
+class StationMaintenance(models.Model):
+    """
+    Uma rádio está em manutenção enquanto existir um registro para ela.
+    Usa o id da estação (e não o IP) para continuar válido se o IP mudar.
+    """
+    REASON_MAX_LENGTH = 300
+
+    station_id = models.CharField(max_length=50, unique=True)
+    reason = models.CharField(max_length=REASON_MAX_LENGTH)
+    started_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.station_id} - {self.reason}"

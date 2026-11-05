@@ -83,6 +83,16 @@
                     <span id="stat-offline" class="stat-value">0</span>
                 </div>
             </div>
+
+            <div class="stat-card maintenance">
+                <div class="stat-icon-wrapper">
+                    <i class="fa-solid fa-wrench"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Em Manutenção</span>
+                    <span id="stat-maintenance" class="stat-value">0</span>
+                </div>
+            </div>
         </section>
 
         <!-- Main Responsive Grid -->
@@ -114,6 +124,11 @@
                             <div class="indicator-wrapper">
                                 <span class="status-dot dot-checking" id="dot-{{ station.id }}"></span>
                             </div>
+                            <button type="button" class="maintenance-btn" id="maintenance-btn-{{ station.id }}"
+                                    title="Colocar em manutenção" aria-label="Colocar em manutenção" disabled
+                                    onclick="openMaintenanceDialog('{{ station.id }}')">
+                                <i class="fa-solid fa-wrench"></i>
+                            </button>
                         </div>
                     </div>
                     {% endfor %}
@@ -133,6 +148,33 @@
         </footer>
         
     </div>
+
+    <!-- Maintenance Dialog -->
+    <dialog id="maintenance-dialog" class="maintenance-dialog">
+        <form id="maintenance-form">
+            {% csrf_token %}
+            <h3 id="maintenance-title"></h3>
+            <p id="maintenance-station" class="maintenance-station"></p>
+
+            <div id="maintenance-reason-field" class="maintenance-field">
+                <label for="maintenance-reason">Motivo da manutenção</label>
+                <textarea id="maintenance-reason" rows="3" maxlength="300"
+                          placeholder="Ex.: troca da fonte da máquina"></textarea>
+            </div>
+
+            <div id="maintenance-current" class="maintenance-field">
+                <span class="maintenance-field-label">Motivo informado</span>
+                <p id="maintenance-current-reason"></p>
+            </div>
+
+            <p id="maintenance-error" class="maintenance-error" role="alert"></p>
+
+            <div class="maintenance-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeMaintenanceDialog()">Cancelar</button>
+                <button type="submit" id="maintenance-submit" class="btn btn-primary"></button>
+            </div>
+        </form>
+    </dialog>
 
     <!-- Core Dynamic Logic -->
     <script src="{% static 'js/monitor.js' %}"></script>
