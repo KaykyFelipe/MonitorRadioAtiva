@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=2">
 </head>
 <body>
     <div class="app-container">
@@ -81,16 +81,6 @@
                 <div class="stat-info">
                     <span class="stat-label">Fora do Ar (Desligadas)</span>
                     <span id="stat-offline" class="stat-value">0</span>
-                </div>
-            </div>
-
-            <div class="stat-card maintenance">
-                <div class="stat-icon-wrapper">
-                    <i class="fa-solid fa-wrench"></i>
-                </div>
-                <div class="stat-info">
-                    <span class="stat-label">Em Manutenção</span>
-                    <span id="stat-maintenance" class="stat-value">0</span>
                 </div>
             </div>
         </section>
@@ -177,6 +167,6 @@
     </dialog>
 
     <!-- Core Dynamic Logic -->
-    <script src="{% static 'js/monitor.js' %}"></script>
+    <script src="{% static 'js/monitor.js' %}?v=2"></script>
 </body>
 </html>

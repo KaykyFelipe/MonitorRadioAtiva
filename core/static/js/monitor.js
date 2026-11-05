@@ -110,7 +110,6 @@ function updateDashboard(data) {
     let onlineCount = 0;
     let warningCount = 0;
     let offlineCount = 0;
-    let maintenanceCount = 0;
 
     data.stations.forEach(station => {
         const textEl = document.getElementById(`status-text-${station.id}`);
@@ -142,7 +141,6 @@ function updateDashboard(data) {
             textEl.classList.add("text-maintenance");
             dotEl.classList.add("dot-maintenance");
             if (rowEl) rowEl.classList.add("station-maintenance");
-            maintenanceCount++;
         } else if (station.status === "checking") {
             textEl.innerText = "VERIFICANDO...";
             textEl.classList.add("text-checking");
@@ -190,13 +188,11 @@ function updateDashboard(data) {
     const onlineEl = document.getElementById("stat-online");
     const warningEl = document.getElementById("stat-warning");
     const offlineEl = document.getElementById("stat-offline");
-    const maintenanceEl = document.getElementById("stat-maintenance");
 
     if (totalEl) totalEl.innerText = data.stations.length;
     if (onlineEl) onlineEl.innerText = onlineCount;
     if (warningEl) warningEl.innerText = warningCount;
     if (offlineEl) offlineEl.innerText = offlineCount;
-    if (maintenanceEl) maintenanceEl.innerText = maintenanceCount;
 
     // Update bottom metadata badges
     const speedEl = document.getElementById("speed-badge");

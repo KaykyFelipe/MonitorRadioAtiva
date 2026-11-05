@@ -273,11 +273,6 @@ body {
     color: var(--color-checking);
 }
 
-.stat-card.maintenance .stat-icon-wrapper {
-    background: hsla(195, 90%, 68%, 0.1);
-    color: var(--color-maintenance);
-}
-
 .stat-info {
     display: flex;
     flex-direction: column;
@@ -781,8 +776,8 @@ body {
     }
 }
 
-/* Notebooks/monitores estreitos: sem espaço para o IP e o botão de manutenção na mesma linha */
-@media (min-width: 1025px) and (max-width: 1279px) {
+/* Janelas estreitas: sem espaço para o IP e o botão de manutenção na mesma linha */
+@media (min-width: 1025px) and (max-width: 1149px) {
     .station-meta {
         display: none !important;
     }
@@ -838,7 +833,7 @@ body {
 
     /* Compact Stats Cards */
     .stats-overview {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 16px;
     }
 
@@ -869,7 +864,7 @@ body {
         height: calc(14.28% - 9px); /* 7 groups -> 100% / 7 = 14.28% */
         gap: 24px;
         min-height: 0;
-        max-width: 1240px; /* limit card width to prevent stretching */
+        max-width: 1100px; /* limit card width to prevent stretching */
         width: 100%;
         margin: 0 auto; /* center cards horizontally */
     }
@@ -998,12 +993,17 @@ body {
 
     .station-status-area {
         gap: 6px; /* reduced from 10px to prevent clipping */
-        flex-shrink: 0; /* prevent status area from shrinking */
+        min-width: 0; /* status longo quebra em duas linhas para o botão de manutenção caber */
     }
 
     .status-text {
         font-size: 0.78rem; /* reduced from 0.8rem to prevent text/dot clipping on narrow screens */
-        white-space: nowrap; /* prevent text wrapping/clipping */
+        line-height: 1.2;
+        white-space: normal;
+    }
+
+    .indicator-wrapper {
+        flex-shrink: 0;
     }
 
     .dashboard-footer {
