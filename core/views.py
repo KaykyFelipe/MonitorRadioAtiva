@@ -170,7 +170,6 @@ def check_statuses_api(request):
         # A manutenção tem prioridade sobre qualquer outro status, então nem precisa de ping
         maintenance = maintenance_by_station.get(station['id'])
         if maintenance:
-            started_at = timezone.localtime(maintenance.started_at).strftime('%d/%m às %H:%M')
             return {
                 "id": station['id'],
                 "name": station['name'],
@@ -181,7 +180,9 @@ def check_statuses_api(request):
                 "firefox": "unknown",
                 "audio": "unknown",
                 "maintenance_reason": maintenance.reason,
-                "details": f"Motivo: {maintenance.reason}\nEm manutenção desde {started_at}"
+                # O navegador formata a data no horário local, sem depender dos dados de fuso do servidor
+                "maintenance_started_at": maintenance.started_at.isoformat(),
+                "details": f"Motivo: {maintenance.reason}"
             }
 
         # 1. First verify connection via ping

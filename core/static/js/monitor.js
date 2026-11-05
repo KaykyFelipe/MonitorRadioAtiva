@@ -140,7 +140,13 @@ function updateDashboard(data) {
             textEl.innerText = "MANUTENÇÃO";
             textEl.classList.add("text-maintenance");
             dotEl.classList.add("dot-maintenance");
-            if (rowEl) rowEl.classList.add("station-maintenance");
+            if (rowEl) {
+                rowEl.classList.add("station-maintenance");
+                const startedAt = new Date(station.maintenance_started_at).toLocaleString("pt-BR", {
+                    day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit",
+                });
+                rowEl.title = `${station.details}\nEm manutenção desde ${startedAt}`;
+            }
         } else if (station.status === "checking") {
             textEl.innerText = "VERIFICANDO...";
             textEl.classList.add("text-checking");
@@ -297,6 +303,7 @@ async function submitMaintenance(event) {
         const station = lastStatusData.stations.find(s => s.id === stationId);
         station.status = ending ? "checking" : "maintenance";
         station.maintenance_reason = ending ? "" : reason;
+        station.maintenance_started_at = new Date().toISOString();
         station.details = ending ? "Aguardando a próxima verificação" : `Motivo: ${reason}`;
         updateDashboard(lastStatusData);
 
