@@ -975,6 +975,7 @@ body {
     .station-label {
         font-size: 1.05rem; /* Large and readable! */
         font-weight: 600;
+        line-height: 1.15; /* nomes longos ("Lavador / Almoxarifado") quebram em duas linhas */
     }
 
     .station-hostname {

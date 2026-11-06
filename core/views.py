@@ -18,14 +18,14 @@ RADIO_STATIONS = [
     {"id": "ub_almoxarifado", "name": "atv.radioub.almoxarifado", "ip": "10.100.230.233", "group": "Uberlândia", "label": "Almoxarifado"},
     
     {"id": "lm_lavador", "name": "atv.radiolm.lavador", "ip": "10.100.250.10", "group": "Limeira", "label": "Lavador"},
-    {"id": "lm_almoxarifado", "name": "atv.radiolm.almoxarifado", "ip": "10.100.230.235", "group": "Limeira", "label": "Almoxarifado"},
+    {"id": "lm_almoxarifado", "name": "atv.radiolm.almoxarifado", "ip": "10.100.250.11", "group": "Limeira", "label": "Almoxarifado"},
     
-    {"id": "cg_lavador_almoxarifado", "name": "atv.radiocg.lavador", "ip": "10.100.250.12", "group": "Campo Grande", "label": "Lavador/Almoxarifado"},
+    {"id": "cg_lavador_almoxarifado", "name": "atv.radiocg.lavador", "ip": "10.100.250.12", "group": "Campo Grande", "label": "Lavador / Almoxarifado"},
     
     {"id": "ar_lavador", "name": "atv.radioar.lavador", "ip": "10.100.250.14", "group": "Araçatuba", "label": "Lavador"},
     {"id": "ar_almoxarifado", "name": "atv.radioar.almoxarifado", "ip": "10.100.250.15", "group": "Araçatuba", "label": "Almoxarifado"},
     
-    {"id": "ld_lavador", "name": "atv.radiold.lavador", "ip": "10.100.250.16", "group": "Londrina", "label": "Lavador/Almoxarifado"},
+    {"id": "ld_lavador", "name": "atv.radiold.lavador", "ip": "10.100.250.16", "group": "Londrina", "label": "Lavador / Almoxarifado"},
     ##{"id": "ld_almoxarifado", "name": "atv.radiold.almoxarifado", "ip": "10.100.230.241", "group": "Londrina", "label": "Almoxarifado"},
     
     {"id": "rp_lavador", "name": "atv.radiorp.lavador", "ip": "10.100.250.18", "group": "Ribeirão Preto", "label": "Lavador"},
